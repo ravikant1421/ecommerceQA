@@ -18,12 +18,23 @@ public class LoginPage extends AbstractComponents{
 	WebElement password;
 	@FindBy(id="login-button")
 	WebElement loginBtn;
+	@FindBy(css="div[class*='error-message']")
+	WebElement errorText;
+	@FindBy(css="span[class='title']")
+	WebElement titleText;
 	
 	public ProductsPage loginApplication(String user,String psw) {
+		System.out.print(user);
 		userName.sendKeys(user);
 		password.sendKeys(psw);
 		loginBtn.click();
 		return new ProductsPage(driver);
+	}
+	public String getErrorMessage() {
+		return errorText.getText();
+	}
+	public String getSucessMessage() {
+		return titleText.getText();
 	}
 	
 	
